@@ -28,3 +28,14 @@ steps:
     PathtoPublish: 'target'
     ArtifactName: 'java-artifact'
     publishLocation: 'Container'
+
+- task: Docker@2
+  displayName: Build and push docker images to docker hub repository
+  inputs:
+    containerRegistry: 'dockerhub-connection'
+    repository: 'url-health-checker-dockerhub'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    tags: |
+      latest
+      $(Build.BuildId)
