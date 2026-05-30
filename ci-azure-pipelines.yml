@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: Maven@4
+  displayName: 'Building the code'
+
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17' 
+    jdkArchitectureOption: 'x64'
+    goals: 'clean package'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publishing artifacts'
+  inputs:
+    PathtoPublish: 'target'
+    ArtifactName: 'java-artifact'
+    publishLocation: 'Container'
