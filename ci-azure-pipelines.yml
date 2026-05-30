@@ -33,7 +33,7 @@ steps:
   displayName: Build and push docker images to docker hub repository
   inputs:
     containerRegistry: 'dockerhub-connection'
-    repository: 'url-health-checker-dockerhub'
+    repository: 'khushiships/url-health-checker-dockerhub'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: |
