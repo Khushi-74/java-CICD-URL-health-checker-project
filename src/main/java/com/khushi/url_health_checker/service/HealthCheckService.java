@@ -32,7 +32,7 @@ public class HealthCheckService {
                     urlString,
                     responseCode,
                     endTime - startTime,
-                    "UP"
+                    "UP-V2"
             );
 
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class HealthCheckService {
                     urlString,
                     0,
                     0,
-                    "DOWN"
+                    "DOWN-V2"
             );
         }
     }
