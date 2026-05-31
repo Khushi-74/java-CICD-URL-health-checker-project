@@ -52,8 +52,4 @@ steps:
 
       docker rm url-health-checker || true
 
-      docker run -d \
-        --restart unless-stopped \
-        --name url-health-checker \
-        -p 8080:8080 \
-        khushiships/url-health-checker-dockerhub:latest
+      docker run -d --restart unless-stopped --name url-health-checker -p 8080:8080 khushiships/url-health-checker-dockerhub:latest
