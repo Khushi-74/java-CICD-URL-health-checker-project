@@ -39,3 +39,23 @@ steps:
     tags: |
       latest
       $(Build.BuildId)
+
+- task: SSH@0
+  displayName: SSH into azure vm and run docker image
+  inputs:
+    sshEndpoint: 'azure-vm-ssh'
+    runOptions: 'commands'
+    commands: |
+      docker pull khushiships/url-health-checker-dockerhub:latest
+      
+      docker stop url-health-checker || true
+      
+      docker rm url-health-checker || true
+
+      docker image prune -af || true
+
+      docker run -d \
+      --name url-health-checker \
+      -p 8080:8080 \
+      khushiships/url-health-checker:latest
+    readyTimeout: '20000'
